@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const productsRoute = require("./routes/products.route");
 const storesRoute = require("./routes/stores.route");
+const usersRoute = require("./routes/users.route");
 const { seedDatabase, createTables } = require("./utils/db.seeder");
 
 const API = "/api";
@@ -17,6 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(API, productsRoute);
 app.use(API, storesRoute);
+app.use(API, usersRoute);
+
 
 app.listen(PORT, () => {
   console.log("Server started on port 3000");
