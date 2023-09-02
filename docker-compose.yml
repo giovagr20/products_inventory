@@ -1,0 +1,9 @@
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mypassword
+      MYSQL_DATABASE: storedb-api
+    ports:
+      - 3306:3306
