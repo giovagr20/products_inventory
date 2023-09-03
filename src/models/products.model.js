@@ -1,16 +1,17 @@
 const dbConnection = require("../configs/database.connection");
 const { createInventoriesByDefault } = require("./inventories.model");
-
+const moment = require('moment');
 exports.createProduct = async (product) => {
   const { name, description, state } = product;
 
   const connection = await dbConnection.getConnection();
 
+  const date = moment(Date.now()).format('YYYY-MM-DD HH:MM:SS');
   const [rows, fields] = await connection.query(
     `INSERT INTO products
   (name, description, state) 
   VALUES (?, ?, ?)`,
-    [name, description, state],
+    [name, description, state ],
     (errQuery, results) => {
       if (!errQuery) {
         console.log(`Data has been saved: ${results}`);
